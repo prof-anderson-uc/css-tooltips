@@ -1,0 +1,119 @@
+/* ===============================
+   Base link styling
+   ================================= */
+
+/* ⬇︎ Adds tooltip to links that have the class name of "tooltip" */
+a.tooltip {
+  position: relative;  /* Creates positioning context so ::before and ::after are positioned relative to the link, not the page */
+  display: inline-block; /* Allows width/height and positioning to behave predictably */
+  text-decoration: none; /* Removes default underline */
+  color: blue; /* Sets link text color */
+  border-bottom: 2px dotted silver; /* Optional dotted underline */
+}
+
+
+
+
+/* ===============================
+   Tooltip bubble (::before)
+   ================================= */
+
+a::before {
+  content: attr(data-name); /* Pulls text from the data-name attribute in HTML */
+  position: absolute; /* Allows us to position tooltip relative to the link */
+  left: 50%; /* Moves tooltip horizontally to the midpoint of the link */
+  bottom: 100%; /* Places tooltip directly above the link */
+
+  transform: translateX(-50%) translateY(-0.5rem) scale(0);
+  /* translateX(-50%) centers tooltip horizontally
+     translateY(-0.5rem) adds a small gap above the link
+     scale(0) makes tooltip start invisible (shrunk to nothing) */
+
+  transform-origin: center bottom; /* Makes the tooltip grow from the bottom-center point */
+
+  background-color: black; /* Tooltip background */
+  color: white; /* Tooltip text color */
+
+  padding: 0.5rem 1rem; /* Adds space inside the tooltip */
+  border-radius: 2rem; /* Creates rounded pill shape */
+
+  white-space: nowrap; /* Prevents tooltip text from wrapping */
+  opacity: 0; /* Makes tooltip invisible initially */
+
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smoothly animates scale and fade-in */
+
+  z-index: 10; /* Ensures tooltip appears above other elements */
+}
+
+
+/* ===============================
+   Tooltip arrow (::after)
+   ================================= */
+
+a::after {
+  content: ''; /* Required for pseudo-element to render */
+
+  position: absolute; /* Positions arrow relative to link */
+
+  left: 50%; /* Centers arrow horizontally */
+  bottom: 100%; /* Anchors arrow above the link */
+
+  transform: translateX(-50%) scale(0); /* Centers arrow and shrinks it initially */
+  transform-origin: center bottom; /* Arrow grows from the bottom-center point */
+
+  border-top: 0.7rem solid black; /* Creates the triangle by giving the top border color */
+
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  /* Transparent side borders form the triangular shape */
+
+  opacity: 0; /* Hidden initially */
+
+  transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s; /* Slight delay so arrow appears just after bubble */
+
+  z-index: 9; /* Slightly below tooltip bubble */
+}
+
+
+/* ===============================
+   Hover state
+   ================================= */
+
+a:hover::before {
+  transform: translateX(-50%) translateY(-0.5rem) scale(1); /* Scales tooltip to full size */
+
+  opacity: 1; /* Fades tooltip in */
+}
+
+a:hover::after {
+  transform: translateX(-50%) scale(1); /* Scales arrow to full size */
+  opacity: 1; /* Fades arrow in */
+}
+
+
+
+
+/* ===============================
+   Base Styles: 
+   Don't copy these to YOUR project. 
+   They're just setting up the example page layout. 
+   ================================= */
+main {
+  font-family: sans-serif;
+  line-height: 1.4;
+  max-width: 60rem;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 1px solid silver;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
