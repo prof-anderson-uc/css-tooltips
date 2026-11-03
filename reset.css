@@ -1,128 +1,159 @@
-/*	
-	Filename:		  reset.css
-	Description:	Resets default HTML styles across browsers
-                & adds Print Styles
+/*
+  UCBA Reset Stylesheet
+  Based on Eric Meyer's Reset v2.0, updated for modern browsers
+  Adjusted for clarity, accessibility, and student learning
+
+  Every browser adds its own default styles (margins, font sizes,
+  bold headings, and so on). This file removes most of them so
+  every project starts from the same blank slate. Link it BEFORE
+  your own stylesheet so your styles build on top of it.
+
+  A note on units: this file uses both rem and em.
+  - rem is based on the page's root font size (usually 16px),
+    so 1rem is the same size everywhere. Good for font sizes.
+  - em is based on the font size of the element itself, so
+    spacing in em grows and shrinks along with its text.
+    Good for margins and padding around text.
 */
 
 
-/* MARGINS, PADDING & FONT SIZE 
-------------------------------------------- */
-html, body, div, span, applet, object, iframe,
+/* MARGINS, PADDING & FONTS
+------------------------------ */
+/* Remove default spacing, borders, and text sizes from nearly
+   every element. "font: inherit" means headings, bold text, and
+   so on all start out looking like plain body text. You decide
+   how they should look in your own stylesheet. */
+html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, font, img, ins, kbd, q, s, samp,
-small, strike, sub, sup, tt, var,
+a, abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strong, sub, sup, var,
+b, u, i,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit; /* inherit font family, size, and weight from the parent */
+  vertical-align: baseline;
 }
 
-address,caption,cite,code,dfn,th,var {
-	font-style:normal;
-	font-weight:normal;
+/* Use border-box sizing for every element.
+   Padding and borders are included inside an element's width,
+   so a 300px-wide box stays 300px wide when you add padding.
+   Learn more: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
+/* Stop phones (especially iPhones) from enlarging text on their own
+   when the phone is turned sideways. Your font sizes stay the same.
+   Learn more: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust */
+html {
+  -webkit-text-size-adjust: 100%; /* Safari still needs this version */
+  text-size-adjust: 100%;
+}
+
+/* Set a readable starting size and line spacing for body text */
 body {
-	line-height: 1;
+  font-size: 1rem;
+  line-height: 1.3; /* Adds a little room between lines of text */
+}
+
+/* Add a space below paragraphs */
+p {
+  margin-bottom: 1em;
+}
+
+/* Hide elements with the [hidden] attribute */
+[hidden] {
+  display: none;
+}
+
+/* Images sit on the text baseline like letters do, which leaves a
+   small gap underneath them (room for letters like "g" and "y").
+   Lining them up with the middle of the text removes that gap.
+   Learn more: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/vertical-align */
+img, svg, video {
+  vertical-align: middle;
+}
+
+
+/* TEXT
+------------------------------ */
+/* The reset above makes these tags look like plain text.
+   They carry meaning (importance, emphasis, titles of works),
+   so we give back their usual bold and italic styles. */
+strong,
+b {
+  font-weight: bold;
+}
+
+/* Headings stay bold so they still look like headings.
+   They all start at the same size as body text, so setting
+   each heading's font-size is up to you. */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+em,
+i,
+cite,
+dfn {
+  font-style: italic;
+}
+
+/* Break up long words and web addresses so they wrap to the next
+   line instead of stretching the page wider than a phone screen.
+   Learn more: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-wrap */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* Wrap text more evenly. "balance" splits headings into lines of
+   similar length. "pretty" avoids leaving a single word alone on the
+   last line of a paragraph. Browsers that don't support these
+   simply wrap text the usual way.
+   Learn more: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
 }
 
 p {
-	margin-bottom: 1em;
+  text-wrap: pretty;
 }
 
-
-
-/*  TABLES 
-------------------------------------------- */
-caption,
-th {
-	font-weight: bold;
-	text-align:left;
-}
-
-table {
-	border-collapse:collapse;
-	border-spacing:0;
-}
-
-
-
-/*  FORMS
-------------------------------------------- */
-fieldset {
-	border: 1px solid black;
-	padding: 1em;
-}
-
-legend {
-	font-weight: bold;
-}
-
-
-
-/* BORDERS 
-------------------------------------------- */
-img {
-	border:0;
-}
-
-
+/* Show a dotted underline and a question-mark cursor on
+   abbreviations, a hint that hovering reveals the full term */
 abbr[title] {
-	cursor:help;
+  text-decoration: underline dotted;
+  cursor: help;
 }
 
-
-/* MISCELLANEOUS 
-------------------------------------------- */
-
-del {
-	text-decoration: line-through;
+/* Monospace font for code-related tags.
+   ("monospace, serif" keeps browsers from shrinking code text.) */
+code, kbd, pre, samp {
+  font-family: monospace, serif;
 }
 
-blockquote, 
-q {
-	quotes: none;
-}
-
-blockquote:before, 
-blockquote:after,
-q:before,
-q:after {
-	content: " ";
-	content: none;
-}
-
-dfn {
-    font-style: italic;
-}
-
-code,
-kbd,
-pre,
-samp {
-    font-family: monospace, serif;
-}
-
+/* Wrap long lines in <pre> tags instead of running off the page */
 pre {
-    white-space: pre;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
-
+/* Resize small text */
 small {
   font-size: 80%;
 }
 
-sub,
-sup {
+/* Keep superscript and subscript from changing line spacing */
+sub, sup {
   position: relative;
   font-size: 75%;
   line-height: 0;
@@ -130,134 +161,169 @@ sup {
 }
 
 sup {
-  top: -.5em;
+  top: -0.5em;
 }
 
 sub {
-  bottom: -.25em;
+  bottom: -0.25em;
 }
 
+/* Style highlighted text */
 mark {
   color: #000;
   background: #ff0;
 }
 
+/* Give block quotes a simple gray bar on the left so they stand
+   out from regular paragraphs. Replace this with your own design. */
+blockquote {
+  border-left: 4px solid #888;
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+
+/*  TABLES
+------------------------------ */
+/* Bold captions and headers, left-align text */
+caption,
+th {
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Remove spacing between table cells */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* FORMS & BUTTONS
+------------------------------ */
+/* Ensure visible form grouping and spacing */
+fieldset {
+  border: 1px solid black;
+  padding: 1em;
+}
+
+/* Bold legend text */
+legend {
+  font-weight: bold;
+}
+
+/* Form controls use the page's font instead of the browser's,
+   and lose the small margin some browsers (like Safari) add.
+   Their borders and padding stay, so they still look like fields. */
+button, input, select, textarea {
+  margin: 0;
+  font: inherit;
+}
+
+/* Show a hand cursor on buttons, like links */
+button {
+  cursor: pointer;
+}
+
+
+/* MISCELLANEOUS
+------------------------------ */
+/* Pointer cursor for <summary> elements */
 details summary {
   cursor: pointer;
 }
 
+/* Keep elements inside <summary> on the same line as the arrow */
 details summary > * {
   display: inline;
 }
 
+/* Remove bottom spacing on last paragraph inside details */
 details p:last-of-type {
   margin-bottom: 0;
 }
 
-nav ul {
-  list-style:none;
+/* Simple light gray divider line */
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
 }
 
 
-
-/* PRINT STYLES
-------------------------------------------- */
-/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
-
+/*  PRINT STYLES
+------------------------------ */
+/* These rules only apply when someone prints the page or saves it
+   as a PDF. They save ink and keep the page readable on paper.
+   Learn more: https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Media_queries/Printing */
 @media print {
-  *,
-  *:before,
-  *:after {
+
+  /* Black text on a white background, no shadows */
+  *, *::before, *::after {
     color: #000 !important;
-    text-shadow: none !important;
     background: transparent !important;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
   }
 
-  a,
-  a:visited {
+  /* Links can't be clicked on paper, so print the web address after each link */
+  a, a:visited {
     text-decoration: underline;
   }
 
-  a[href]:after {
+  a[href]::after {
     content: " (" attr(href) ")";
   }
 
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
+  /* Skip addresses for links that point within the same page */
+  a[href^="#"]::after {
     content: "";
   }
 
-  pre,
-  blockquote {
-    border: 1px solid #999;
-
-    page-break-inside: avoid;
+  /* Print the full term after each abbreviation */
+  abbr[title]::after {
+    content: " (" attr(title) ")";
   }
 
+  /* Hide the navigation menu, which isn't useful on paper */
+  nav {
+    display: none;
+  }
+
+  /* Keep these from splitting across two pages */
+  pre, blockquote, tr, img {
+    break-inside: avoid;
+  }
+
+  pre, blockquote {
+    border: 1px solid #999;
+  }
+
+  /* Repeat table headings at the top of each printed page */
   thead {
     display: table-header-group;
   }
 
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-  
+  /* Keep images inside the page margins */
   img {
     max-width: 100% !important;
   }
 
-  p,
-  h2,
-  h3 {
+  /* Avoid leaving a heading alone at the bottom of a page,
+     or one or two stray lines at the top or bottom of a page */
+  h2, h3 {
+    break-after: avoid;
+  }
+
+  p, h2, h3 {
     orphans: 3;
     widows: 3;
   }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
-
-  select {
-    background: #fff !important;
-  }
-
-  .navbar {
-    display: none;
-  }
-
-  .btn > .caret,
-  .dropup > .btn > .caret {
-    border-top-color: #000 !important;
-  }
-
-  .label {
-    border: 1px solid #000;
-  }
-
-  .table {
-    border-collapse: collapse !important;
-  }
-
-  .table td,
-  .table th {
-    background-color: #fff !important;
-  }
-
-  .table-bordered th,
-  .table-bordered td {
-    border: 1px solid #ddd !important;
-  }
-
 }
 
-
-
-/* last updated 9/1/22 */
+/*
+  Created by Professor Eric Anderson
+  University of Cincinnati
+  https://github.com/prof-anderson-uc
+  Last updated: November 3, 2026
+*/
